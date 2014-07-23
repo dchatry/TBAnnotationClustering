@@ -84,7 +84,7 @@ CGFloat TBScaledValueForValue(CGFloat value)
 
     UIColor *outerCircleStrokeColor = [UIColor colorWithWhite:0 alpha:0.25];
     UIColor *innerCircleStrokeColor = [UIColor whiteColor];
-    UIColor *innerCircleFillColor = [UIColor colorWithRed:(255.0 / 255.0) green:(95 / 255.0) blue:(42 / 255.0) alpha:1.0];
+    UIColor *innerCircleFillColor = [UIColor colorWithRed:39.0/255.0 green:172.0/255.0 blue:233.0/255.0 alpha:1];
 
     CGRect circleFrame = CGRectInset(rect, 4, 4);
 

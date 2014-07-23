@@ -56,6 +56,7 @@
 
     NSMutableSet *toKeep = [NSMutableSet setWithSet:before];
     [toKeep intersectSet:after];
+    
 
     NSMutableSet *toAdd = [NSMutableSet setWithSet:after];
     [toAdd minusSet:toKeep];
@@ -102,6 +103,18 @@
     for (UIView *view in views) {
         [self addBounceAnnimationToView:view];
     }
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    TBClusterAnnotationView *annotationView = (TBClusterAnnotationView*) view;
+    if(annotationView.count != 1) {
+        [mapView deselectAnnotation:view.annotation animated:YES];
+        double zoomLevel = log2(360 * ((mapView.frame.size.width/256) / mapView.region.span.longitudeDelta));
+        
+        MKCoordinateSpan span = MKCoordinateSpanMake(0, 360/pow(2, zoomLevel + 2)*mapView.frame.size.width/256);
+        [mapView setRegion:MKCoordinateRegionMake(view.annotation.coordinate, span) animated:YES];
+    }    
 }
 
 @end
